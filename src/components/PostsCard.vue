@@ -1,8 +1,8 @@
 <template>
-  <div class="caixa">
+  <div class="caixa" @click="goPosts()">
     <h1 v-if="qtdPosts > 0">{{ qtdPosts }} posts</h1>
     <h1 v-else>Não há posts</h1>
-    <p v-if="qtdPosts > 0">View all posts</p>
+    <RouterLink to="/posts" v-if="qtdPosts > 0">View all posts</RouterLink>
   </div>
 </template>
 <script>
@@ -14,10 +14,16 @@ export default {
       default: 0,
     },
   },
+  methods: {
+    goPosts() {
+      this.$router.push('/posts')
+    },
+  },
 }
 </script>
 <style scoped>
 .caixa {
+  cursor: pointer;
   border: solid 1px black;
   padding: 20px;
   border-radius: 5px;

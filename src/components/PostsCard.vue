@@ -1,22 +1,24 @@
 <template>
-  <div class="caixa" @click="goPosts()">
-    <h1 v-if="qtdPosts > 0">{{ qtdPosts }} posts</h1>
-    <h1 v-else>Não há posts</h1>
+  <div class="caixa" @click="avislah()">
+    <h1 v-if="qtdPosts > 0">{{ qtdPosts }} {{ titulo }}</h1>
+    <h1 v-else>Não há {{ titulo }}</h1>
     <RouterLink to="/posts" v-if="qtdPosts > 0">View all posts</RouterLink>
   </div>
 </template>
 <script>
 export default {
   name: 'PostsCard',
+  emits: ['clicado'],
   props: {
     qtdPosts: {
       type: Number,
       default: 0,
     },
+    titulo: String,
   },
   methods: {
-    goPosts() {
-      this.$router.push('/posts')
+    avislah() {
+      this.$emit('clicado')
     },
   },
 }
